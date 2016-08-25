@@ -41,6 +41,7 @@ namespace Sfa.Das.Sas.Infrastructure.MongoDb
 
         public string Import(string text, string type)
         {
+            text = text.Replace("\r", string.Empty).Replace("\n", string.Empty).Replace("\t", string.Empty);
             if (type.Equals("framework"))
             {
                 var entries = JsonConvert.DeserializeObject<List<MongoFramework>>(text);
