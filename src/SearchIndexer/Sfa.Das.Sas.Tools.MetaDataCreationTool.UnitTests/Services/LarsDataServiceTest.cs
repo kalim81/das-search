@@ -14,6 +14,8 @@ using Sfa.Das.Sas.Tools.MetaDataCreationTool.Services.Interfaces;
 
 namespace Sfa.Das.Sas.Tools.MetaDataCreationTool.UnitTests.Services
 {
+    using System.IO;
+
     [TestFixture]
     public class LarsDataServiceTest
     {
@@ -80,6 +82,7 @@ namespace Sfa.Das.Sas.Tools.MetaDataCreationTool.UnitTests.Services
             _frameworkComponentTypeList = new List<FrameworkComponentTypeMetaData> { _frameworkComponentType };
             _learningDeliveryList = new List<LearningDeliveryMetaData> { _learningDelivery };
 
+            _mockHttpGetFile.Setup(m => m.GetFile(It.IsAny<string>())).Returns(new MemoryStream());
             _mockCsvService.Setup(x => x.ReadFromString<FrameworkMetaData>(It.IsAny<string>())).Returns(_frameworkList);
             _mockCsvService.Setup(x => x.ReadFromString<FrameworkAimMetaData>(It.IsAny<string>())).Returns(_frameworkAimList);
             _mockCsvService.Setup(x => x.ReadFromString<FrameworkComponentTypeMetaData>(It.IsAny<string>())).Returns(_frameworkComponentTypeList);
